@@ -15,17 +15,17 @@
 window.SITE_DATA = {
 
   /* 사이트 하단에 표시되는 최종 수정일 */
-  lastUpdated: "2026-09-15",
+  lastUpdated: "2026-09-17",
 
 
   /* =======================================================================
      1. 대표 숫자  —  홈 화면 상단에 크게 표시됩니다
      ======================================================================= */
   stats: [
-    { value: "117",  suffix: "",  label: { ko: "총 연구 과제",          en: "Total studies" } },
-    { value: "22",   suffix: "",  label: { ko: "연구자 주도 임상시험",  en: "Investigator-initiated trials" } },
-    { value: "70",   suffix: "+", label: { ko: "의뢰자 주도 임상시험",  en: "Sponsor-initiated trials" } },
-    { value: "26",   suffix: "",  label: { ko: "연구팀 구성원",          en: "Team members" } }
+    { value: "117",  suffix: "",  label: { ko: "누적 연구 과제 (2026년)",         en: "Cumulative studies (2026)" } },
+    { value: "22",   suffix: "",  label: { ko: "연구자 주도 임상시험 (2025.11)",  en: "Investigator-initiated trials (Nov 2025)" } },
+    { value: "70",   suffix: "+", label: { ko: "의뢰자 주도 임상시험",            en: "Sponsor-initiated trials" } },
+    { value: "26",   suffix: "",  label: { ko: "연구팀 구성원",                   en: "Team members" } }
   ],
 
 
@@ -35,30 +35,24 @@ window.SITE_DATA = {
   milestones: [
     {
       year: "2017",
-      title:  { ko: "의뢰자 주도 임상시험(SIT) 시작", en: "Start of sponsor-initiated trials (SIT)" },
-      detail: { ko: "제약사 주도 국제 임상시험 참여를 본격적으로 시작했습니다.",
-                en: "Began full participation in industry-sponsored international clinical trials." }
-    },
-    {
-      year: "2018",
-      title:  { ko: "제약사 연구과제 수주 (AZ, MSD)", en: "Industry-sponsored research awarded (AZ, MSD)" },
-      detail: { ko: "AstraZeneca, MSD와의 공동 연구 과제를 수주했습니다.",
-                en: "Secured collaborative research projects with AstraZeneca and MSD." }
-    },
-    {
-      year: "2019",
-      title:  { ko: "연구자 주도 임상시험(IIT) 시작 — KGOG 3045", en: "Start of investigator-initiated trials (IIT) — KGOG 3045" },
-      detail: { ko: "첫 연구자 주도 다기관 임상시험 AMBITION을 개시했습니다.",
-                en: "Launched AMBITION, the team's first investigator-initiated multicenter trial." }
-    },
-    {
-      year: "2020",
       title:  { ko: "연구팀 출범", en: "Research team launched" },
       detail: { ko: "연구간호사 1명, 데이터매니저 1명, 연구원 1명으로 시작했습니다.",
                 en: "Started with 1 research nurse, 1 data manager and 1 researcher." }
     },
     {
-      year: "2022",
+      year: "2018",
+      title:  { ko: "연구자 주도 임상시험(IIT) 시작 — KGOG 3045", en: "Start of investigator-initiated trials (IIT) — KGOG 3045" },
+      detail: { ko: "첫 연구자 주도 다기관 임상시험 AMBITION을 개시했습니다.",
+                en: "Launched AMBITION, the team's first investigator-initiated multicenter trial." }
+    },
+    {
+      year: "2019",
+      title:  { ko: "의뢰자 주도 임상시험(SIT) 시작 · 제약사 연구과제 수주 (AZ, MSD)", en: "Start of sponsor-initiated trials (SIT) · Industry-sponsored research awarded (AZ, MSD)" },
+      detail: { ko: "제약사 주도 임상시험 참여를 시작하고, AstraZeneca·MSD의 연구 과제를 수주했습니다.",
+                en: "Began participating in sponsor-initiated trials and secured industry-sponsored research from AstraZeneca and MSD." }
+    },
+    {
+      year: "2021",
       title:  { ko: "GLORY 팀 정식 구성", en: "Establishment of the GLORY Team" },
       detail: { ko: "연구간호사 9명, 연구원 3명 규모로 확대되었습니다.",
                 en: "Expanded to 9 research nurses and 3 researchers." }
@@ -77,9 +71,9 @@ window.SITE_DATA = {
     },
     {
       year: "2026",
-      title:  { ko: "GLORY 팀 확대", en: "GLORY Team expansion" },
-      detail: { ko: "교수 4명, 연구간호사 15명, 데이터매니저 2명, 연구원 4명, 행정 1명 · 누적 연구 117건",
-                en: "4 professors, 15 research nurses, 2 data managers, 4 researchers, 1 administrative officer · 117 cumulative studies." }
+      title:  { ko: "GLORY 팀 확대 · 누적 연구 117건", en: "GLORY Team expansion · 117 cumulative studies" },
+      detail: { ko: "교수 4명, 연구간호사 15명, 데이터매니저 2명, 연구원 4명, 행정 1명 · 누적 연구 117건, 의뢰자 주도 임상시험 70건 이상",
+                en: "4 professors, 15 research nurses, 2 data managers, 4 researchers, 1 administrative officer · 117 cumulative studies, including more than 70 SITs." }
     }
   ],
 
@@ -310,7 +304,7 @@ window.SITE_DATA = {
      8. 중개연구 주제
      ======================================================================= */
   translational: [
-    { topic: { ko: "난소암의 종양 면역미세환경 연구",                     en: "Tumor immune microenvironment in ovarian cancer" },                               journal: "J Immunother Cancer", year: "2021" },
+    { topic: { ko: "난소암의 종양 면역미세환경 연구",                     en: "Tumor immune microenvironment in ovarian cancer" },                               journal: "J Immunother Cancer", year: "2020" },
     { topic: { ko: "난소암 종양 오가노이드와 나노베시클",                 en: "Ovarian cancer tumoroids and nanovesicles" },                                     journal: "Adv Sci",             year: "2021" },
     { topic: { ko: "자궁내막암 호르몬 치료 무반응군 규명",                en: "Non-responders to hormone therapy in endometrial cancer" },                       journal: "Am J Obstet Gynecol", year: "2021" },
     { topic: { ko: "난소암 기능적 HRD 검사법 개발",                       en: "Development of a functional HRD assay in ovarian cancer" },                       journal: "Cancer Res",          year: "2022" },
@@ -338,69 +332,112 @@ window.SITE_DATA = {
      ======================================================================= */
   publications: [
     { year: "2025", category: "translational",
-      title: { ko: "자궁내막암에서 자궁경부세포검사 및 혈액 기반 ctDNA의 진단적 활용",
-               en: "PAP smear– and blood-based ctDNA in endometrial cancer" },
-      journal: "Clinical Cancer Research", authors: "", link: "" },
+      title: { ko: "자궁내막암에서 질 도말 및 혈장 ctDNA 심층 시퀀싱을 이용한 유전체 프로파일링",
+               en: "Genomic Profiling in Patients with Endometrial Cancer by Deep Sequencing of Vaginal Swabs and Plasma" },
+      journal: "Clinical Cancer Research", authors: "Kim N, Kim YN, Lee K, et al.",
+      link: "https://doi.org/10.1158/1078-0432.CCR-24-4263" },
 
     { year: "2024", category: "translational",
-      title: { ko: "BRCA1/2 변이 상태에 따른 난소암 CD8⁺ 종양침윤림프구의 면역 소진 양상 차이",
-               en: "Differential immune exhaustion status of CD8⁺ TILs according to BRCA1/2 mutation status in ovarian cancer" },
-      journal: "Journal for ImmunoTherapy of Cancer", authors: "", link: "" },
+      title: { ko: "BRCA1/2 변이 상태에 따른 난소암 CD8⁺ 종양침윤림프구의 면역 특성과 항PD-1 재활성화 능력 차이",
+               en: "Unique immune characteristics and differential anti-PD-1-mediated reinvigoration potential of CD8⁺ TILs based on BRCA1/2 mutation status in epithelial ovarian cancers" },
+      journal: "Journal for ImmunoTherapy of Cancer", authors: "Park J, Kim JC, Lee YJ, et al.",
+      link: "https://doi.org/10.1136/jitc-2024-009058" },
 
     { year: "2023", category: "translational",
-      title: { ko: "ctDNA를 이용한 난소암 치료 내성 기전 규명",
-               en: "Identification of resistance mechanisms using ctDNA in ovarian cancer" },
-      journal: "Clinical Cancer Research", authors: "", link: "" },
+      title: { ko: "BRCA 변이 난소암에서 연속 채취 ctDNA를 이용한 PARP 억제제 내성 기전 규명",
+               en: "Investigation of PARP Inhibitor Resistance Based on Serially Collected Circulating Tumor DNA in Patients With BRCA-Mutated Ovarian Cancer" },
+      journal: "Clinical Cancer Research", authors: "Kim YN, Shim Y, Seo J, et al.",
+      link: "https://doi.org/10.1158/1078-0432.CCR-22-3715" },
 
     { year: "2023", category: "translational",
-      title: { ko: "난소암에서 PARP 억제제 치료 중 나타나는 면역학적 변화",
-               en: "Immunologic changes during PARP inhibitor therapy in ovarian cancer" },
-      journal: "British Journal of Cancer", authors: "", link: "" },
+      title: { ko: "난소암 PARP 억제제 유지요법 반응과 말초혈액 PD-1⁺ 조절 T세포 빈도의 연관성",
+               en: "Frequency of peripheral PD-1⁺ regulatory T cells is associated with treatment responses to PARP inhibitor maintenance in patients with epithelial ovarian cancer" },
+      journal: "British Journal of Cancer", authors: "Park J, Kim JC, Lee M, et al.",
+      link: "https://doi.org/10.1038/s41416-023-02455-z" },
 
     { year: "2023", category: "translational",
-      title: { ko: "난소암에서 소형 ctDNA 패널의 임상적 유용성",
-               en: "Utility of a small-sized ctDNA panel in ovarian cancer" },
-      journal: "Cancer Research", authors: "", link: "" },
+      title: { ko: "난소암에서 소형 NGS 패널 기반 연속 ctDNA 검사의 미세잔존질환 검출 및 예후 예측",
+               en: "Serial Circulating Tumor DNA Analysis with a Tumor-Naïve Next-Generation Sequencing Panel Detects Minimal Residual Disease and Predicts Outcome in Ovarian Cancer" },
+      journal: "Cancer Research", authors: "Heo J, Kim YN, Shin S, et al.",
+      link: "https://doi.org/10.1158/0008-5472.CAN-23-1429" },
 
     { year: "2022", category: "translational",
-      title: { ko: "난소암 기능적 상동재조합결핍(HRD) 검사법 개발",
-               en: "Development of a functional homologous recombination deficiency assay in ovarian cancer" },
-      journal: "Cancer Research", authors: "", link: "" },
+      title: { ko: "비정상 전사체 사용(aTU)에 기반한 기능적 상동재조합결핍(HRD) 검사법 개발",
+               en: "Aberrant Transcript Usage Is Associated with Homologous Recombination Deficiency and Predicts Therapeutic Response" },
+      journal: "Cancer Research", authors: "Kang HG, Hwangbo H, Kim MJ, et al.",
+      link: "https://doi.org/10.1158/0008-5472.CAN-21-2023" },
 
     { year: "2021", category: "translational",
-      title: { ko: "난소암의 종양 면역미세환경 연구",
-               en: "Tumor immune microenvironment research in ovarian cancer" },
-      journal: "Journal for ImmunoTherapy of Cancer", authors: "", link: "" },
+      title: { ko: "난소암 환자 조직 유래 티슈오이드와 암세포 유래 나노베시클을 이용한 약물 반응 평가",
+               en: "Cancer Patient Tissueoid with Self-Homing Nano-Targeting of Metabolic Inhibitor" },
+      journal: "Advanced Science", authors: "Yoon HJ, Chung YS, Lee YJ, et al.",
+      link: "https://doi.org/10.1002/advs.202102640" },
 
     { year: "2021", category: "translational",
-      title: { ko: "난소암 종양 오가노이드와 나노베시클을 이용한 치료 반응 예측",
-               en: "Ovarian cancer tumoroid and nanovesicle models for treatment response" },
-      journal: "Advanced Science", authors: "", link: "" },
+      title: { ko: "자궁내막암 가임력 보존 호르몬 치료 반응과 불일치 복구(MMR) 상태의 연관성",
+               en: "Mismatch repair status influences response to fertility-sparing treatment of endometrial cancer" },
+      journal: "American Journal of Obstetrics and Gynecology", authors: "Chung YS, Woo HY, Lee JY, et al.",
+      link: "https://doi.org/10.1016/j.ajog.2020.10.003" },
 
-    { year: "2021", category: "translational",
-      title: { ko: "자궁내막암 호르몬 치료 무반응군의 분자적 특성",
-               en: "Molecular characteristics of non-responders to hormone therapy in endometrial cancer" },
-      journal: "American Journal of Obstetrics and Gynecology", authors: "", link: "" },
-
-    { year: "2022", category: "clinical",
-      title: { ko: "선행항암화학요법 후 중간 종양감축술에 HIPEC을 병용한 진행성 난소암 환자의 비교효과 연구 (KGOG 3042)",
-               en: "Comparative effectiveness of HIPEC following interval cytoreductive surgery in advanced-stage ovarian cancer (KGOG 3042)" },
-      journal: "JAMA Surgery", authors: "", link: "" },
-
-    { year: "2021", category: "clinical",
-      title: { ko: "백금 저항성 재발 난소암에서 바이오마커 기반 표적치료 우산형 연구 (KGOG 3045, AMBITION)",
-               en: "Biomarker-driven targeted therapy in platinum-resistant recurrent ovarian cancer (KGOG 3045, AMBITION)" },
-      journal: "Japanese Journal of Clinical Oncology · Journal of Gynecologic Oncology · International Journal of Cancer", authors: "", link: "" },
+    { year: "2020", category: "translational",
+      title: { ko: "난소암 원발·전이 부위 탈진 CD39⁺ CD8 T세포의 항PD-1 재활성화를 4-1BB 공동자극이 증강",
+               en: "4-1BB co-stimulation further enhances anti-PD-1-mediated reinvigoration of exhausted CD39⁺ CD8 T cells from primary and metastatic sites of epithelial ovarian cancers" },
+      journal: "Journal for ImmunoTherapy of Cancer", authors: "Leem G, Park J, Jeon M, et al.",
+      link: "https://doi.org/10.1136/jitc-2020-001650" },
 
     { year: "2023", category: "clinical",
-      title: { ko: "진행성 난소암에서 선행항암화학요법과 tremelimumab·durvalumab 병용 제2상 연구 (KGOG 3046, TRU-D)",
-               en: "Neoadjuvant chemotherapy plus tremelimumab and durvalumab in advanced-stage ovarian cancer (KGOG 3046, TRU-D)" },
-      journal: "Journal of Gynecologic Oncology · J Immunother Cancer · Clinical Cancer Research", authors: "", link: "" },
+      title: { ko: "선행항암화학요법 후 중간 종양감축술에 HIPEC을 병용한 진행성 난소암 환자 연구 (KGOG 3042)",
+               en: "Hyperthermic Intraperitoneal Chemotherapy After Interval Cytoreductive Surgery for Patients With Advanced-Stage Ovarian Cancer Who Had Received Neoadjuvant Chemotherapy" },
+      journal: "JAMA Surgery", authors: "Lee JY, Lee YJ, Son JH, et al.",
+      link: "https://doi.org/10.1001/jamasurg.2023.3944" },
+
+    { year: "2023", category: "clinical",
+      title: { ko: "HRR 변이 백금 저항성 난소암에서 olaparib + cediranib 또는 durvalumab 병용 무작위 제2상 연구 (KGOG 3045 하위연구)",
+               en: "Randomized, two-arm, noncomparative phase 2 study of olaparib plus cediranib or durvalumab in HRR-mutated, platinum-resistant ovarian cancer: A substudy of KGOG 3045" },
+      journal: "International Journal of Cancer", authors: "Kim YN, Joung JG, Park E, et al.",
+      link: "https://doi.org/10.1002/ijc.34696" },
 
     { year: "2022", category: "clinical",
-      title: { ko: "BRCA 비변이 백금 민감성 재발 난소암에서 olaparib·pembrolizumab·bevacizumab 유지요법 (OPEB-01, APGOT-OV4)",
-               en: "Olaparib maintenance with pembrolizumab and bevacizumab in BRCA non-mutated platinum-sensitive recurrent ovarian cancer (OPEB-01, APGOT-OV4)" },
-      journal: "Journal of Gynecologic Oncology · Nature Communications", authors: "", link: "" }
+      title: { ko: "백금 저항성 난소암에서 바이오마커 기반 표적치료 우산형 연구 결과 (AMBITION, KGOG 3045)",
+               en: "Biomarker-guided targeted therapy in platinum-resistant ovarian cancer (AMBITION; KGOG 3045): a multicentre, open-label, five-arm, uncontrolled, umbrella trial" },
+      journal: "Journal of Gynecologic Oncology", authors: "Lee JY, Kim BG, Kim JW, et al.",
+      link: "https://doi.org/10.3802/jgo.2022.33.e45" },
+
+    { year: "2019", category: "clinical",
+      title: { ko: "백금 저항성 재발 난소암에서 바이오마커 기반 표적치료 우산형 연구 프로토콜 (AMBITION, KGOG 3045)",
+               en: "An umbrella study of biomarker-driven targeted therapy in patients with platinum-resistant recurrent ovarian cancer: a Korean Gynecologic Oncology Group study (KGOG 3045), AMBITION" },
+      journal: "Japanese Journal of Clinical Oncology", authors: "Lee JY, Yi JY, Kim HS, et al.",
+      link: "https://doi.org/10.1093/jjco/hyz085" },
+
+    { year: "2025", category: "clinical",
+      title: { ko: "진행성 난소암에서 선행항암화학요법과 이중 면역관문억제제 병용: TRU-D 제2상 연구 최종 분석 (KGOG 3046)",
+               en: "Neoadjuvant Chemotherapy with Dual Immune Checkpoint Inhibitors for Advanced-Stage Ovarian Cancer: Final Analysis of TRU-D Phase II Nonrandomized Clinical Trial" },
+      journal: "Clinical Cancer Research", authors: "Park J, Joung JG, Lim MC, et al.",
+      link: "https://doi.org/10.1158/1078-0432.CCR-24-3753" },
+
+    { year: "2023", category: "clinical",
+      title: { ko: "진행성 난소암에서 선행항암화학요법과 durvalumab·tremelimumab 병용 제2상 연구: 1차 분석 (KGOG 3046, TRU-D)",
+               en: "Phase II study of durvalumab and tremelimumab with front-line neoadjuvant chemotherapy in patients with advanced-stage ovarian cancer: primary analysis in the original cohort of KGOG3046/TRU-D" },
+      journal: "Journal for ImmunoTherapy of Cancer", authors: "Park J, Lee JB, Lim MC, et al.",
+      link: "https://doi.org/10.1136/jitc-2023-007444" },
+
+    { year: "2019", category: "clinical",
+      title: { ko: "진행성 난소암에서 선행항암화학요법과 durvalumab·tremelimumab 병용 제2상 연구 프로토콜 (KGOG 3046, TRU-D)",
+               en: "A phase II study of neoadjuvant chemotherapy plus durvalumab and tremelimumab in advanced-stage ovarian cancer: a Korean Gynecologic Oncology Group Study (KGOG 3046), TRU-D" },
+      journal: "Journal of Gynecologic Oncology", authors: "Lee JY, Kim JW, Lim MC, et al.",
+      link: "https://doi.org/10.3802/jgo.2019.30.e112" },
+
+    { year: "2023", category: "clinical",
+      title: { ko: "BRCA 야생형 백금 민감성 재발 난소암에서 olaparib·pembrolizumab·bevacizumab 3제 유지요법 (OPEB-01, APGOT-OV4)",
+               en: "Triplet maintenance therapy of olaparib, pembrolizumab and bevacizumab in women with BRCA wild-type, platinum-sensitive recurrent ovarian cancer: the multicenter, single-arm phase II study OPEB-01/APGOT-OV4" },
+      journal: "Nature Communications", authors: "Kim YN, Park B, Kim JW, et al.",
+      link: "https://doi.org/10.1038/s41467-023-40829-2" },
+
+    { year: "2021", category: "clinical",
+      title: { ko: "BRCA 비변이 백금 민감성 재발 난소암에서 olaparib·pembrolizumab·bevacizumab 유지요법 단일군 제2상 연구 프로토콜 (OPEB-01)",
+               en: "A single-arm phase II study of olaparib maintenance with pembrolizumab and bevacizumab in BRCA non-mutated patients with platinum-sensitive recurrent ovarian cancer (OPEB-01)" },
+      journal: "Journal of Gynecologic Oncology", authors: "Lee YJ, Lim MC, Kim BG, et al.",
+      link: "https://doi.org/10.3802/jgo.2021.32.e31" }
   ],
 
 
@@ -422,9 +459,9 @@ window.SITE_DATA = {
     },
     {
       date: "2026-05-30",
-      title: { ko: "APGOT-OV14 · TROY 연구 ESMO 발표 (TiP)", en: "APGOT-OV14 · TROY presented at ESMO (TiP)" },
-      body:  { ko: "HER2 발현 난소암을 대상으로 한 TROY 연구의 Trial-in-Progress를 발표했습니다.",
-               en: "Presented the Trial-in-Progress for TROY in HER2-expressing ovarian cancer." }
+      title: { ko: "APGOT-OV14 · TROY 연구 ESMO 2026 발표 예정 (TiP)", en: "APGOT-OV14 · TROY to be presented at ESMO 2026 (TiP)" },
+      body:  { ko: "HER2 발현 난소암을 대상으로 한 TROY 연구를 ESMO 2026에서 Trial-in-Progress로 발표할 예정입니다.",
+               en: "TROY, in HER2-expressing ovarian cancer, will be presented as a Trial-in-Progress at ESMO 2026." }
     }
   ],
 
