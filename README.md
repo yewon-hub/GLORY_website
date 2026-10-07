@@ -1,194 +1,174 @@
-# GLORY 연구팀 웹사이트 — 관리 안내서
+# GLORY Team 웹사이트 관리 안내서
 
-한국어/영어 이중 언어 정적 웹사이트입니다. 빌드 도구나 설치 과정이 필요 없고,
-파일을 그대로 GitHub에 올리면 웹사이트가 됩니다.
+홈페이지 주소: <https://yewon-hub.github.io/GLORY_website/>
 
----
+엑셀 파일 하나와 사진 폴더만 관리하면 됩니다.
+GitHub에 파일을 올리면 1~2분 뒤 홈페이지에 자동으로 반영됩니다.
 
-## 1. 폴더 구조
-
-```
-glory-website/
-├── index.html            홈 (한국어)
-├── research.html         연구 소개
-├── trials.html           임상연구
-├── team.html             구성원
-├── publications.html     논문
-├── contact.html          연락처
-│
-├── en/                   영어 페이지 (파일 구성 동일)
-│   └── index.html, research.html, ...
-│
-├── data/
-│   └── site-data.js      ★ 내용을 수정하는 파일 — 여기만 고치면 됩니다
-│
-├── assets/
-│   ├── css/style.css     디자인(색상·글꼴·여백)
-│   ├── js/site.js        데이터를 화면에 그리는 스크립트
-│   └── img/favicon.svg   브라우저 탭 아이콘
-│
-├── .nojekyll             GitHub Pages 설정 파일 (지우지 마세요)
-└── README.md             이 문서
-```
-
-> **핵심 원칙**
-> 구성원·논문·임상연구·소식·연락처는 전부 **`data/site-data.js` 한 파일**에 들어 있습니다.
-> HTML 파일은 건드릴 필요가 없습니다.
+| 바꾸고 싶은 것 | 고칠 곳 |
+|---|---|
+| 구성원, 논문, 소식, 연혁, 임상시험 목록, 연락처, 홈 화면 문구 | `content/glory-content.xlsx` |
+| 구성원 사진 | `images/people/` 폴더 |
+| 갤러리 사진 | `images/gallery/` 폴더 |
+| 홈 화면 배경 사진 | `images/hero/` 폴더 |
+| Research 페이지 사진 | `images/research/` 폴더 |
+| 소식에 붙는 사진 | `images/news/` 폴더 |
 
 ---
 
-## 2. 내용 수정하기
+## 1. 엑셀로 내용 수정하기
 
-`data/site-data.js` 를 메모장, VS Code 등 아무 텍스트 편집기로 열어 수정한 뒤 저장하면 됩니다.
+1. GitHub 저장소에서 `content` 폴더 → `glory-content.xlsx` → **Download raw file** (⬇ 아이콘) 로 내려받습니다.
+2. 엑셀에서 수정하고 저장합니다. **파일 이름은 바꾸지 마세요.**
+3. GitHub의 `content` 폴더에서 **Add file → Upload files** 를 누르고 파일을 끌어다 놓은 뒤 **Commit changes** 를 누릅니다.
+4. 1~2분 뒤 홈페이지를 새로고침(Ctrl + F5)하면 반영되어 있습니다.
 
-### 논문 추가
+### 탭 설명
 
-`publications:` 항목을 찾아 **맨 위에** 아래 형식으로 한 덩어리를 추가하세요.
-
-```js
-{ year: "2026", category: "clinical",
-  title: { ko: "국문 제목", en: "English title" },
-  journal: "Journal of Clinical Oncology",
-  authors: "Lee JY, et al.",
-  link: "https://doi.org/10.xxxx/xxxxx" },
-```
-
-- `category` 는 `"clinical"`(임상연구) 또는 `"translational"`(중개연구) 중 하나입니다.
-- `authors`, `link` 가 없으면 `""` 로 비워 두면 됩니다.
-- 연도 정렬은 자동으로 됩니다. 순서 신경 쓰지 않아도 됩니다.
-
-### 구성원 추가
-
-`team:` → `groups:` 안에서 해당 팀의 `members:` 에 한 줄을 추가하세요.
-
-```js
-{ name: "Hong Gildong" },
-```
-
-한글 이름이나 직책을 함께 보이려면:
-
-```js
-{ name: "Hong Gildong", sub: { ko: "홍길동 · 연구간호사", en: "Research Nurse" } },
-```
-
-교수·연구책임자는 `team:` → `leadership:` 에 있습니다.
-
-### 임상연구 추가
-
-`iit:`(연구자 주도) 또는 `sit:`(의뢰자 주도) 에 추가합니다.
-`status` 는 `"ongoing"` / `"completed"` / `"terminated"` 중 하나입니다.
-
-### 소식 추가
-
-`news:` 맨 위에 추가하세요. 날짜는 `"2026-10-01"` 형식입니다.
-홈 화면에는 최신 3건, 연락처 페이지에는 전체가 표시됩니다.
-
-### 연락처·이메일·지도
-
-`contact:` 항목에 이메일과 전화번호를 넣으면 연락처 페이지에 자동으로 나타납니다.
-비워 두면(`""`) 해당 줄은 표시되지 않습니다.
-
-지도를 넣으려면 Google 지도에서 **공유 → 지도 퍼가기 → HTML 복사** 후,
-`src="..."` 안의 주소만 `mapEmbed` 에 붙여넣으세요.
-
-### 대표 숫자 / 연혁
-
-홈 화면의 큰 숫자 4개는 `stats:`, 연혁은 `milestones:` 에서 수정합니다.
-
----
-
-## 3. 수정한 내용 미리보기
-
-`index.html` 을 더블클릭해 브라우저로 열면 바로 확인할 수 있습니다.
-수정 후 반영이 안 되면 **Ctrl + F5**(강력 새로고침)를 눌러 주세요.
-
-> 화면이 비어 보인다면 `site-data.js` 에 문법 오류(쉼표 빠짐, 따옴표 짝 안 맞음)가 있는 경우입니다.
-> **F12 → Console** 탭에 오류가 난 줄 번호가 표시됩니다.
-
----
-
-## 4. GitHub Pages로 인터넷에 올리기
-
-### 처음 한 번만 하는 설정
-
-1. **GitHub 가입** — <https://github.com> 에서 계정을 만듭니다.
-2. **GitHub Desktop 설치** — <https://desktop.github.com> (명령어 없이 클릭으로 사용)
-3. GitHub 웹사이트에서 **New repository** 클릭
-   - Repository name: `glory-team` (원하는 이름)
-   - **Public** 선택 (무료 GitHub Pages는 공개 저장소만 가능)
-   - **Create repository**
-4. GitHub Desktop → **File → Clone repository** → 방금 만든 저장소 선택 → 컴퓨터의 적당한 위치에 저장
-5. 클론된 폴더 안에 **`glory-website` 폴더 안의 내용물 전체**를 복사해 넣습니다.
-   (`glory-website` 폴더째로가 아니라, 그 **안의 파일들**을 넣어야 합니다.
-   `index.html` 이 저장소 최상단에 있어야 합니다.)
-6. GitHub Desktop 에서 왼쪽 아래 Summary 칸에 `첫 업로드` 라고 쓰고
-   **Commit to main** → **Push origin** 클릭
-7. GitHub 웹사이트의 저장소 → **Settings → Pages**
-   - Source: **Deploy from a branch**
-   - Branch: **main** / **/ (root)** → **Save**
-8. 1~2분 후 `https://사용자이름.github.io/glory-team/` 에서 사이트가 열립니다.
-
-### 이후 수정할 때마다 (3단계)
-
-1. 컴퓨터에서 `data/site-data.js` 를 수정하고 저장
-2. GitHub Desktop 을 열면 변경 내역이 자동으로 보입니다 → Summary에 간단히 메모 (예: `2026년 논문 추가`)
-3. **Commit to main** → **Push origin**
-
-1분 정도 뒤 사이트에 반영됩니다.
-
-### 커스텀 도메인 연결 (선택)
-
-도메인을 갖고 계시다면 **Settings → Pages → Custom domain** 에 입력하고,
-도메인 등록업체(가비아, Cloudflare 등)에서 아래 DNS 레코드를 추가하면 됩니다.
-
-| 종류 | 이름 | 값 |
+| 탭 | 내용 | 표시되는 곳 |
 |---|---|---|
-| CNAME | www | `사용자이름.github.io` |
-| A | @ | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| **People** | 구성원 | People 페이지 |
+| **Publications** | 논문 | Publications 페이지, 홈 화면 Latest publications |
+| **News** | 소식 | News 페이지, 홈 화면 News (최신 3건) |
+| **Milestones** | 연구팀 연혁 | 홈 화면 Milestones |
+| **Trials** | 연구자 주도 임상시험 | Research 페이지 |
+| **Settings** | 홈 화면 문구, 주소, 이메일, 전화 | 여러 곳 |
 
-학교/병원 서브도메인을 쓰려면 전산팀에 CNAME 설정을 요청하시면 됩니다.
+### 공통 규칙
+
+- 첫째 줄(진한 색)의 영문 열 이름은 바꾸지 마세요.
+- 둘째 줄(연한 초록색, ※ 로 시작)은 설명입니다. 홈페이지에 나오지 않습니다.
+- 셋째 줄부터 한 줄에 한 건씩 적습니다. 줄을 지우면 홈페이지에서도 사라집니다.
+- 빈칸은 홈페이지에 표시되지 않습니다.
+
+### People 탭
+
+- 위에서부터 적힌 순서대로 표시됩니다.
+- `team` 칸이 같은 사람끼리 한 묶음이 됩니다. 묶음의 순서는 엑셀에 처음 나온 순서입니다.
+- `role` 에 Professor 가 들어간 사람은 같은 팀 안에서 강조된 카드로 표시됩니다.
+- 졸업·퇴직한 구성원은 `team` 을 `Alumni` 로 바꾸고 맨 아래로 옮기면 따로 묶입니다.
+
+### Publications 탭
+
+- 연도 순서는 자동으로 정렬됩니다. 같은 연도 안에서는 엑셀에 적힌 순서입니다.
+- `doi` 칸에는 `10.1158/1078-0432.CCR-24-4263` 처럼 DOI만 넣으면 링크가 자동으로 만들어집니다.
+- `category` 는 `Clinical` 또는 `Translational` 입니다.
+- `featured` 에 `Y` 를 적은 논문이 홈 화면 Latest publications 에 나옵니다. 하나도 없으면 최신 4편이 나옵니다.
+
+### News 탭
+
+- `date` 는 `2026-10-07`, `2026-10`, `2026` 모두 가능합니다. 최신순으로 자동 정렬됩니다.
+- `link` 를 넣으면 카드를 눌렀을 때 그 주소로 이동합니다.
+- `image` 에는 `images/news` 폴더에 올린 사진의 파일 이름을 적습니다.
+- `featured` 에 `Y` 를 적으면 News 페이지 맨 위에 크게 표시됩니다 (최대 2건).
+
+### Settings 탭
+
+`value` 칸만 고칩니다. `email`, `phone` 을 채우면 Contact 페이지에 이메일·전화 칸이 생깁니다.
 
 ---
 
-## 5. 확인이 필요한 항목
+## 2. 사진 올리기
 
-2026-09-17에 소개 자료(`TEAMGLORY 소개_20260910.pptx`) 및 PubMed와 대조해 아래 항목을 정리했습니다.
+GitHub에서 해당 폴더로 들어가 **Add file → Upload files** 로 올리면 됩니다.
+사진 크기는 신경 쓰지 않아도 됩니다. 홈페이지용 크기로 자동으로 줄어듭니다.
+휴대폰 사진(JPG, PNG, HEIC)을 그대로 올려도 됩니다.
 
-**반영 완료**
+### 구성원 사진 — `images/people/`
 
-| 위치 | 내용 |
-|---|---|
-| `milestones` | 슬라이드 4 타임라인의 마커 위치대로 연도를 수정했습니다 (2017 출범 → 2018 IIT 시작 → 2019 SIT 시작·AZ/MSD 과제 → 2021 GLORY 팀 구성 → 2023 KDDF → 2024 DOVE → 2026 누적 117건) |
-| `publications` | 자료에 적힌 학술지·연구명을 PubMed에서 찾아 **실제 제목·저자·DOI** 를 넣었습니다 (18편). 여러 학술지가 한 줄에 묶여 있던 항목은 논문별로 나눴습니다 |
-| `stats` | 117건은 2026년 기준 누적 연구 수(슬라이드 4), 92건은 2025년 11월 기준 임상시험 수(슬라이드 11)로 **기준 시점과 범위가 다른 숫자**입니다. 홈 화면 라벨에 기준 시점을 표기했습니다 |
+파일 이름을 엑셀 People 탭의 이름과 같게 올리면 자동으로 연결됩니다.
 
-**아직 확인이 필요한 항목** (소개 자료에 정보가 없습니다)
+- `Jung-Yun Lee.jpg` (영문 이름)
+- `이정윤.jpg` (한글 이름, 엑셀 `name_ko` 칸에 같은 이름이 있어야 함)
+- 띄어쓰기, 대소문자, 하이픈은 달라도 됩니다. `jungyun_lee.jpg`, `Lee Jungyun.png` 모두 연결됩니다.
+- 사진이 없는 사람은 이름 머리글자가 표시됩니다.
+- 얼굴이 가운데 위쪽에 오는 정사각형에 가까운 사진이 가장 잘 나옵니다.
 
-| 위치 | 확인할 내용 |
-|---|---|
-| `milestones` | "GLORY 팀 확대(교수 4명 외)" 는 자료에서 마커 없이 2023~2024년 아래에 놓여 있습니다. 현재 인원 구성으로 보고 2026년에 넣었으니 맞는지 확인해 주세요 |
-| `team` | 구성원별 **직책**(연구간호사/데이터매니저/연구원)과 한글 이름 — 조직도에는 영문 이름만 있습니다 |
-| `team` / `stats` | 조직도에는 교수 4명 + 구성원 23명(총 27명)인데, 연혁 슬라이드의 인원 합계는 26명입니다 |
-| `contact` | **이메일·전화번호**가 비어 있습니다 |
-| `publications` | *J Immunother Cancer* 면역미세환경 논문은 자료에 2021년으로 적혀 있으나 PubMed 발행일은 2020년 12월이라 2020으로 넣었습니다 |
-| `news` | 소식 3건의 **날짜**는 임시 값입니다 (자료에는 "Jun 2026", "ESMO 2026 (TiP)" 까지만 나와 있습니다) |
+### 갤러리 — `images/gallery/`
 
-### 로고와 사진
+행사마다 폴더를 하나 만들고 그 안에 사진을 올립니다. **폴더 이름이 앨범 제목**이 됩니다.
 
-현재는 `G` 글자를 쓴 임시 로고가 들어가 있습니다.
-연세대·세브란스 공식 로고나 연구팀 단체 사진을 넣으시려면:
+```
+images/gallery/
+├── 2026-06 ASCO Annual Meeting/      → 앨범 "ASCO Annual Meeting" (June 2026)
+│   ├── 01_Poster session.jpg         → 사진 설명 "Poster session"
+│   └── IMG_1234.jpg                  → 설명 없음
+└── 2025-12-18 Year-end dinner/       → 앨범 "Year-end dinner" (December 18, 2025)
+```
 
-1. 이미지 파일을 `assets/img/` 폴더에 넣습니다 (예: `logo.png`)
-2. 저에게 "로고를 assets/img/logo.png 로 바꿔줘" 라고 말씀해 주시면 반영해 드립니다.
+- 폴더 이름을 날짜(`2026-06` 또는 `2026-06-15`)로 시작하면 최신 앨범이 위로 옵니다.
+- 사진 파일 이름이 사진 설명이 됩니다. `IMG_1234`, `KakaoTalk_...` 같은 자동 이름은 표시되지 않습니다.
+- 앞에 `01_`, `02_` 를 붙이면 그 순서대로 나옵니다.
+- 가장 최근 사진 6장이 홈 화면 Gallery 에도 나옵니다. 사진이 한 장도 없으면 홈 화면에서 Gallery 칸이 숨겨집니다.
+- 새 앨범을 만들 때는 컴퓨터에서 폴더를 만들어 사진을 넣은 뒤, GitHub의 `images/gallery` 화면에 **폴더째로 끌어다 놓으면** 됩니다.
 
-> 공식 로고는 기관 CI 사용 지침을 따라야 하므로, 사용 전에 담당 부서에 확인하시길 권합니다.
+### 홈 화면 배경 — `images/hero/`
+
+가로로 넓은 사진 한 장을 올리면 홈 화면 맨 위 제목 뒤에 어둡게 깔립니다. 비어 있으면 기본 배경이 나옵니다.
+
+### Research 페이지 — `images/research/`
+
+`clinical.jpg`, `translational.jpg` 라는 이름으로 올리면 각 영역 옆에 들어갑니다.
+
+### 로고 — `images/logo/` (선택)
+
+이 폴더를 만들고 로고 파일 한 개를 올리면 홈 화면 제목 위에 표시됩니다.
+연세대·세브란스 공식 로고는 기관 CI 사용 지침을 따라야 하니, 담당 부서에 확인한 뒤 올리세요.
 
 ---
 
-## 6. 더 큰 변경이 필요할 때
+## 3. 반영이 안 될 때
 
-메뉴 추가, 페이지 신설, 색상 변경, 레이아웃 조정 등은 여러 파일을 함께 고쳐야 합니다.
-이런 작업은 저에게 말씀해 주시면 처리해 드립니다.
+1. GitHub 저장소 상단의 **Actions** 탭을 엽니다.
+2. 맨 위 항목이 초록색 ✓ 이면 정상입니다. Ctrl + F5 로 새로고침해 보세요.
+3. 빨간색 ✗ 이면 그 항목 → **build** → **Build site** 를 눌러 메시지를 확인합니다.
+   - `could not read glory-content.xlsx` : 엑셀 파일이 깨졌거나 `.xls` 형식입니다. `.xlsx` 로 다시 저장해 올리세요.
+4. 초록색인데 일부가 빠졌다면 **Build site** 기록에서 `!` 로 시작하는 줄을 봅니다.
+   - `does not match any name in the People sheet` : 사진 파일 이름이 엑셀의 이름과 다릅니다.
+   - `'title' is empty - skipped` : 제목이 비어 있는 줄입니다.
 
-색상만 바꾸고 싶다면 `assets/css/style.css` 맨 위 `:root { }` 안의 색상 값만
-수정하면 사이트 전체에 적용됩니다.
+---
+
+## 4. 내 컴퓨터에서 미리 보기 (선택)
+
+저장소를 내려받은 폴더에서 `preview.bat` 를 더블클릭하면 사이트를 만들어 브라우저로 엽니다.
+(Python 이 설치되어 있어야 합니다. 끝낼 때는 검은 창을 닫으면 됩니다.)
+
+---
+
+## 5. 폴더 구조
+
+```
+content/glory-content.xlsx   ★ 내용 (엑셀)
+images/                      ★ 사진
+  people/  gallery/  hero/  research/  news/
+
+index.html                   홈
+research.html                Research (Clinical / Translational)
+people.html  publications.html  news.html  gallery.html  contact.html
+partials/                    모든 페이지에 공통인 머리말·메뉴·바닥글
+assets/css/style.css         디자인 (색상·글꼴은 맨 위 :root 에서 변경)
+assets/js/site.js            엑셀 내용을 화면에 그리는 스크립트
+tools/build.py               엑셀·사진을 읽어 사이트를 만드는 프로그램
+.github/workflows/deploy.yml 업로드할 때마다 자동으로 사이트를 만들어 게시
+preview.bat                  내 컴퓨터에서 미리 보기
+```
+
+★ 표시가 없는 파일은 평소에는 건드릴 필요가 없습니다.
+
+Research 페이지의 소개 문구와 연구 주제 카드는 `research.html` 에, 홈 화면의 Research areas 카드는 `index.html` 에 직접 적혀 있습니다.
+
+---
+
+## 6. 확인이 필요한 내용
+
+소개 자료(`TEAMGLORY 소개_20260910.pptx`)와 PubMed를 바탕으로 채웠습니다. 아래는 자료에 없거나 추정이 섞인 항목입니다.
+
+| 탭 | 확인할 내용 |
+|---|---|
+| People | 구성원의 `role`(직책)과 `name_ko`(한글 이름)가 비어 있습니다. 교수 4명은 모두 `Professor` 로만 적었습니다 |
+| People | 조직도에는 교수 4명과 구성원 23명(총 27명)인데, 연혁의 인원 합계는 26명입니다 |
+| Settings | `email`, `phone` 이 비어 있습니다. `address_1`(Department of Obstetrics and Gynecology)도 확인해 주세요 |
+| News | 6건은 논문·학회 발표 사실을 바탕으로 만든 초안입니다. 문구와 날짜(월 단위로 적은 것)를 확인해 주세요 |
+| Milestones | 2026년 항목(교수 4명, 연구간호사 15명 등)은 자료에서 연도가 분명하지 않아 현재 구성으로 보고 2026년에 넣었습니다 |
+| Publications | 대표 논문 18편만 들어 있습니다. 전체 목록을 넣으려면 엑셀에 줄을 추가하면 됩니다 |

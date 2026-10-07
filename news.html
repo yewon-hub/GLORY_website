@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--title: News-->
+<!--desc: News from the GLORY Team: publications, conference presentations and announcements.-->
+<!--#include head-->
+</head>
+<body>
+<!--#include header-->
+
+<main id="main">
+  <div class="container page">
+
+    <header class="page-header">
+      <span class="eyebrow">Inside GLORY</span>
+      <h1>News</h1>
+      <p>New publications, conference presentations and announcements from the team.</p>
+    </header>
+
+    <!-- Excel: News tab. Photos: images/news -->
+    <section class="block" id="js-news-featured-block" hidden>
+      <h2 class="block-title">Featured</h2>
+      <div class="card-grid card-grid--2" id="js-news-featured"></div>
+    </section>
+    <section class="block">
+      <h2 class="block-title">All news</h2>
+      <div class="filter-bar" id="js-news-filter" role="group" aria-label="Filter news by category"></div>
+      <p class="filter-count" id="js-news-count" aria-live="polite"></p>
+      <div class="card-grid" id="js-news" style="margin-top:1.5rem"></div>
+    </section>
+
+  </div>
+</main>
+
+<!--#include footer-->
+</body>
+</html>
