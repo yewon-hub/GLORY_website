@@ -45,7 +45,12 @@ GitHub에 파일을 올리면 1~2분 뒤 홈페이지에 자동으로 반영됩�
 
 - 위에서부터 적힌 순서대로 표시됩니다.
 - `team` 칸이 같은 사람끼리 한 묶음이 됩니다. 묶음의 순서는 엑셀에 처음 나온 순서입니다.
-- `role` 에 Professor 가 들어간 사람은 같은 팀 안에서 강조된 카드로 표시됩니다.
+- `team` 이 `Principal Investigators` 인 사람은 약력이 들어가는 큰 카드로 표시됩니다. 이 카드에는 아래 칸이 추가로 나옵니다.
+  - `area` : 담당 분야 (예: Clinical Research)
+  - `affiliation` : 소속
+  - `research_interests`, `education`, `career`, `awards` : 한 칸 안에서 **Alt + Enter** 로 줄을 바꾸면 한 줄이 한 항목이 됩니다.
+  - `education`, `career`, `awards` 는 카드의 "Education and career" 를 눌렀을 때 펼쳐집니다.
+- `profile_url` 을 넣으면 병원 프로필 링크가 생깁니다.
 - 졸업·퇴직한 구성원은 `team` 을 `Alumni` 로 바꾸고 맨 아래로 옮기면 따로 묶입니다.
 
 ### Publications 탭
@@ -70,7 +75,11 @@ GitHub에 파일을 올리면 1~2분 뒤 홈페이지에 자동으로 반영됩�
 
 ## 2. 사진 올리기
 
-GitHub에서 해당 폴더로 들어가 **Add file → Upload files** 로 올리면 됩니다.
+GitHub에서 **해당 폴더 안으로 먼저 들어간 다음** **Add file → Upload files** 로 올립니다.
+저장소 첫 화면(맨 위 폴더)에서 올리면 홈페이지 어디에도 나오지 않습니다.
+
+> **올리기 전에 꼭 확인하세요.** 이 저장소는 누구나 볼 수 있습니다. 사진에 환자 이름·등록번호, 진료 화면,
+> 회의 자료 화면(프로젝터, 노트북)이 찍혀 있지 않은지 확인하고, 있으면 가리거나 잘라낸 뒤 올리세요.
 사진 크기는 신경 쓰지 않아도 됩니다. 홈페이지용 크기로 자동으로 줄어듭니다.
 휴대폰 사진(JPG, PNG, HEIC)을 그대로 올려도 됩니다.
 
@@ -166,7 +175,9 @@ Research 페이지의 소개 문구와 연구 주제 카드는 `research.html` �
 
 | 탭 | 확인할 내용 |
 |---|---|
-| People | 구성원의 `role`(직책)과 `name_ko`(한글 이름)가 비어 있습니다. 교수 4명은 모두 `Professor` 로만 적었습니다 |
+| People | PI 4명의 약력·사진은 병원 프로필 페이지(세브란스병원, 순천향대 부천병원)에서 가져와 영어로 옮겼습니다. 수상명 등 고유 명칭의 영어 표기를 확인해 주세요 |
+| People | 박준식 교수의 연구 분야 첫 줄(Tumor immunology and immunotherapy)은 프로필에 없어 논문 주제로 적었습니다. 이용재 교수의 연구 분야는 진료 분야를 옮긴 것입니다 |
+| People | 나머지 구성원 23명의 `role`(직책)과 `name_ko`(한글 이름), 모든 구성원의 `email` 이 비어 있습니다 |
 | People | 조직도에는 교수 4명과 구성원 23명(총 27명)인데, 연혁의 인원 합계는 26명입니다 |
 | Settings | `email`, `phone` 이 비어 있습니다. `address_1`(Department of Obstetrics and Gynecology)도 확인해 주세요 |
 | News | 6건은 논문·학회 발표 사실을 바탕으로 만든 초안입니다. 문구와 날짜(월 단위로 적은 것)를 확인해 주세요 |

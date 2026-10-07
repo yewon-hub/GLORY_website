@@ -301,15 +301,42 @@
         (p.email ? '<a class="team-email" href="mailto:' + esc(p.email) + '">' + esc(p.email) + "</a>" : "") +
         (links.length ? '<div class="team-links">' + links.join("") + "</div>" : "") + "</article>";
     };
+    /* Principal investigators: a larger card with affiliation, interests and a fold-out profile */
+    var list = function (label, items) {
+      return items && items.length
+        ? "<h4>" + label + "</h4><ul>" + items.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>"
+        : "";
+    };
+    var piCard = function (p) {
+      var photo = p.photo
+        ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy">'
+        : '<span aria-hidden="true">' + esc(initials(p.name)) + "</span>";
+      var links = [];
+      if (p.email) links.push('<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + "</a>");
+      if (safeUrl(p.profile_url)) links.push('<a href="' + esc(p.profile_url) + '" target="_blank" rel="noopener">Hospital profile →</a>');
+      if (p.orcid) links.push('<a class="orcid" href="https://orcid.org/' + esc(p.orcid) + '" target="_blank" rel="noopener">ORCID</a>');
+      var profile = list("Education", p.education) + list("Career", p.career) + list("Awards", p.awards);
+      return '<article class="pi-card">' +
+        '<div class="pi-card-head"><div class="team-photo pi-photo">' + photo + "</div><div>" +
+        (p.area ? '<span class="chip">' + esc(p.area) + "</span>" : "") +
+        '<h3 class="pi-name">' + esc(p.name) + (p.name_ko ? ' <span class="pi-name-ko">' + esc(p.name_ko) + "</span>" : "") + "</h3>" +
+        (p.role ? '<p class="pi-role">' + esc(p.role) + "</p>" : "") +
+        (p.affiliation ? '<p class="pi-affiliation">' + esc(p.affiliation) + "</p>" : "") +
+        "</div></div>" +
+        (p.interests && p.interests.length ? '<div class="pi-interests">' + list("Research interests", p.interests) + "</div>" : "") +
+        (profile ? '<details class="pi-details"><summary>Education and career</summary><div class="pi-profile">' + profile + "</div></details>" : "") +
+        (links.length ? '<div class="team-links pi-links">' + links.join("") + "</div>" : "") +
+        "</article>";
+    };
     var isLead = function (p) { return /professor|principal investigator|\bpi\b/i.test(p.role || ""); };
     $("js-people").innerHTML = people.length ? (D.teams || []).map(function (team) {
       var members = people.filter(function (p) { return p.team === team; });
-      var solo = members.length === 1 && /principal investigator/i.test(team);
-      var body = solo
-        ? '<div class="pi-wrap">' + card(members[0], "pi team-card--lead") + "</div>"
+      var isPi = /principal investigator/i.test(team);
+      var body = isPi
+        ? '<div class="pi-grid' + (members.length === 1 ? " pi-grid--single" : "") + '">' + members.map(piCard).join("") + "</div>"
         : '<div class="team-grid">' + members.map(function (p) { return card(p, isLead(p) ? "lead" : ""); }).join("") + "</div>";
       return '<section class="block block--ruled" data-reveal><h2 class="block-title">' + esc(team) +
-        (solo ? "" : '<span class="team-count">' + members.length + "</span>") + "</h2>" + body + "</section>";
+        (isPi ? "" : '<span class="team-count">' + members.length + "</span>") + "</h2>" + body + "</section>";
     }).join("") : '<p class="empty">Team members will appear here.</p>';
   }
 

@@ -301,7 +301,34 @@ input, select { font: inherit; color: inherit; }
 .block--ruled { padding-top: 1.25rem; border-top: 1px solid var(--line-2); }
 
 /* ---------------------------------------------------------------- people */
-.pi-wrap { max-width: 34rem; margin-inline: auto; }
+.pi-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.pi-grid--single { grid-template-columns: minmax(0, 40rem); justify-content: center; }
+.pi-card { padding: clamp(1.4rem, 2.6vw, 2rem); border: 1px solid #b8ddd1; border-radius: var(--radius); background: linear-gradient(145deg, #fff, #f0f8f4); transition: border-color .25s ease, box-shadow .25s ease; }
+.pi-card:hover { border-color: #a9d8c9; box-shadow: var(--shadow-hover); }
+.pi-card-head { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1.5rem; align-items: center; }
+.pi-card .pi-photo { width: 9rem; margin: 0; }
+.pi-card .chip { margin-bottom: .7rem; }
+.pi-name { color: #102a36; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 1.9rem); font-weight: 400; line-height: 1.15; letter-spacing: .005em; }
+.pi-name-ko { margin-left: .3rem; color: var(--muted-2); font-family: var(--sans); font-size: .9rem; font-weight: 500; white-space: nowrap; }
+.pi-role { margin-top: .5rem; color: #1f2937; font-size: 1rem; font-weight: 600; }
+.pi-affiliation { margin-top: .2rem; color: #566a72; font-size: .88rem; line-height: 1.55; }
+.pi-card h4 { margin-bottom: .6rem; color: var(--teal-2); font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.pi-interests { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #d5e6de; }
+.pi-interests li { position: relative; padding-left: 1rem; color: #374151; font-size: .92rem; line-height: 1.6; }
+.pi-interests li + li { margin-top: .35rem; }
+.pi-interests li::before { content: ""; position: absolute; left: 0; top: .62em; width: .35rem; height: .35rem; border-radius: 50%; background: var(--teal-3); }
+.pi-details { margin-top: 1.25rem; border-top: 1px solid #d5e6de; }
+.pi-details summary { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; color: var(--teal); font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; list-style: none; }
+.pi-details summary::-webkit-details-marker { display: none; }
+.pi-details summary::after { content: "+"; font-size: 1.2rem; font-weight: 400; line-height: 1; transition: transform .2s ease; }
+.pi-details[open] summary::after { transform: rotate(45deg); }
+.pi-details summary:hover { color: var(--ink); }
+.pi-profile { padding-bottom: .5rem; }
+.pi-profile h4 { margin-top: 1.1rem; }
+.pi-profile h4:first-child { margin-top: .25rem; }
+.pi-profile li { padding-block: .3rem; color: #4b5563; font-size: .86rem; line-height: 1.55; }
+.pi-profile li + li { border-top: 1px dashed #dbe6e0; }
+.pi-card .pi-links { justify-content: flex-start; margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid #d5e6de; }
 .team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
 .team-card { height: 100%; padding: 1.5rem; border: 1px solid var(--line-2); border-radius: var(--radius-sm); background: #fff; text-align: center; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
 .team-card:hover { border-color: #a9d8c9; box-shadow: var(--shadow-hover); transform: translateY(-4px); }
@@ -430,6 +457,7 @@ input, select { font: inherit; color: inherit; }
 /* ------------------------------------------------------------ responsive */
 @media (max-width: 1100px) {
   .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pi-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) {
   .section-head { display: block; }
@@ -466,6 +494,8 @@ input, select { font: inherit; color: inherit; }
   .pub-slide { min-height: 24rem; padding-bottom: 4.75rem; }
   .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
   .team-card { padding: 1rem .75rem; }
+  .pi-card-head { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
+  .pi-card .pi-photo { width: 6.5rem; }
   .team-photo { width: 6.5rem; font-size: 1.7rem; }
   .team-name { font-size: .98rem; }
   .photo-grid, .photo-grid--preview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }

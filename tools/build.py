@@ -88,6 +88,11 @@ def read_sheet(wb, name: str) -> list[dict]:
     return out
 
 
+def lines(v: str) -> list[str]:
+    """A cell with several lines (Alt+Enter in Excel) -> list of items."""
+    return [x.strip(" 	-•·") for x in v.splitlines() if x.strip(" 	-•·")]
+
+
 def truthy(v: str) -> bool:
     return v.strip().lower() in TRUTHY
 
@@ -258,6 +263,9 @@ def build_people(rows: list[dict]) -> tuple[list[dict], list[str]]:
             "name": name, "name_ko": r.get("name_ko", ""), "role": r.get("role", ""), "team": team,
             "email": r.get("email", ""), "profile_url": r.get("profile_url", ""), "orcid": orcid,
             "photo": img["src"] if img else "",
+            "area": r.get("area", ""), "affiliation": r.get("affiliation", ""),
+            "interests": lines(r.get("research_interests", "")), "education": lines(r.get("education", "")),
+            "career": lines(r.get("career", "")), "awards": lines(r.get("awards", "")),
         })
     for p in files:
         if p not in used:
@@ -463,6 +471,9 @@ def main() -> int:
         if (ROOT / extra).exists():
             shutil.copy2(ROOT / extra, OUT / extra)
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    for stray in ROOT.iterdir():
+        if is_image(stray):
+            warn(f"{stray.name} is in the top folder and is not shown anywhere - move it into images/gallery (or another images/ folder)")
     build_pages(hashlib.sha1(payload.encode()).hexdigest()[:8] + dt.datetime.now().strftime("%H%M%S"), settings)
 
     photos = sum(len(a["photos"]) for a in gallery)
