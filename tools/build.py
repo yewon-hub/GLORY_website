@@ -263,7 +263,7 @@ def build_people(rows: list[dict]) -> tuple[list[dict], list[str]]:
             "name": name, "name_ko": r.get("name_ko", ""), "role": r.get("role", ""), "team": team,
             "email": r.get("email", ""), "profile_url": r.get("profile_url", ""), "orcid": orcid,
             "photo": img["src"] if img else "",
-            "area": r.get("area", ""), "affiliation": r.get("affiliation", ""),
+            "affiliation": r.get("affiliation", ""),
             "interests": lines(r.get("research_interests", "")), "education": lines(r.get("education", "")),
             "career": lines(r.get("career", "")), "awards": lines(r.get("awards", "")),
         })

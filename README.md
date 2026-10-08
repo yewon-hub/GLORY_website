@@ -46,7 +46,6 @@ GitHub에 파일을 올리면 1~2분 뒤 홈페이지에 자동으로 반영됩�
 - 위에서부터 적힌 순서대로 표시됩니다.
 - `team` 칸이 같은 사람끼리 한 묶음이 됩니다. 묶음의 순서는 엑셀에 처음 나온 순서입니다.
 - `team` 이 `Principal Investigators` 인 사람은 약력이 들어가는 큰 카드로 표시됩니다. 이 카드에는 아래 칸이 추가로 나옵니다.
-  - `area` : 담당 분야 (예: Clinical Research)
   - `affiliation` : 소속
   - `research_interests`, `education`, `career`, `awards` : 한 칸 안에서 **Alt + Enter** 로 줄을 바꾸면 한 줄이 한 항목이 됩니다.
   - `education`, `career`, `awards` 는 카드의 "Education and career" 를 눌렀을 때 펼쳐집니다.
@@ -70,6 +69,7 @@ GitHub에 파일을 올리면 1~2분 뒤 홈페이지에 자동으로 반영됩�
 ### Settings 탭
 
 `value` 칸만 고칩니다. `email`, `phone` 을 채우면 Contact 페이지에 이메일·전화 칸이 생깁니다.
+이메일이 여러 개면 `email` 칸 안에서 **Alt + Enter** 로 줄을 바꿔 적습니다.
 
 ---
 
@@ -179,7 +179,7 @@ Research 페이지의 소개 문구와 연구 주제 카드는 `research.html` �
 | People | 박준식 교수의 연구 분야 첫 줄(Tumor immunology and immunotherapy)은 프로필에 없어 논문 주제로 적었습니다. 이용재 교수의 연구 분야는 진료 분야를 옮긴 것입니다 |
 | People | 나머지 구성원 23명의 `role`(직책)과 `name_ko`(한글 이름), 모든 구성원의 `email` 이 비어 있습니다 |
 | People | 조직도에는 교수 4명과 구성원 23명(총 27명)인데, 연혁의 인원 합계는 26명입니다 |
-| Settings | `email`, `phone` 이 비어 있습니다. `address_1`(Department of Obstetrics and Gynecology)도 확인해 주세요 |
+| Settings | `phone` 이 비어 있습니다. `address_1`(Department of Obstetrics and Gynecology)도 확인해 주세요 |
 | News | 6건은 논문·학회 발표 사실을 바탕으로 만든 초안입니다. 문구와 날짜(월 단위로 적은 것)를 확인해 주세요 |
 | Milestones | 2026년 항목(교수 4명, 연구간호사 15명 등)은 자료에서 연도가 분명하지 않아 현재 구성으로 보고 2026년에 넣었습니다 |
 | Publications | 대표 논문 18편만 들어 있습니다. 전체 목록을 넣으려면 엑셀에 줄을 추가하면 됩니다 |

@@ -23,6 +23,10 @@
     return (first + last).toUpperCase();
   }
   function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+  /* Settings "email" may hold several addresses, separated by a line break, comma or space */
+  function emails() {
+    return String(S.email || "").split(/[\s,;]+/).filter(function (e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e); });
+  }
   var ARROW_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
   var ARROW_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
   var CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
@@ -253,7 +257,9 @@
 
   if ($("js-contact-inline")) {
     var extra = "";
-    if (S.email) extra += '<br><a href="mailto:' + esc(S.email) + '" style="color:var(--teal);font-weight:600">' + esc(S.email) + "</a>";
+    emails().forEach(function (e) {
+      extra += '<br><a href="mailto:' + esc(e) + '" style="color:var(--teal);font-weight:600">' + esc(e) + "</a>";
+    });
     if (S.phone) extra += "<br>" + esc(S.phone);
     $("js-contact-inline").innerHTML = extra;
   }
@@ -318,7 +324,6 @@
       var profile = list("Education", p.education) + list("Career", p.career) + list("Awards", p.awards);
       return '<article class="pi-card">' +
         '<div class="pi-card-head"><div class="team-photo pi-photo">' + photo + "</div><div>" +
-        (p.area ? '<span class="chip">' + esc(p.area) + "</span>" : "") +
         '<h3 class="pi-name">' + esc(p.name) + (p.name_ko ? ' <span class="pi-name-ko">' + esc(p.name_ko) + "</span>" : "") + "</h3>" +
         (p.role ? '<p class="pi-role">' + esc(p.role) + "</p>" : "") +
         (p.affiliation ? '<p class="pi-affiliation">' + esc(p.affiliation) + "</p>" : "") +
@@ -451,29 +456,32 @@
   /* ============================================================= CONTACT */
   if ($("js-contact-methods")) {
     var panels = "";
-    if (S.email) {
+    var mails = emails();
+    if (mails.length) {
       panels += '<div class="contact-panel"><span class="contact-panel-number">01</span>' +
         '<p class="contact-panel-label">Email</p><h2>Write to the team</h2>' +
         '<p class="contact-panel-desc">For research collaboration, clinical trial enquiries and open positions.</p>' +
-        '<div class="contact-email"><a href="mailto:' + esc(S.email) + '">' + esc(S.email) + "</a>" +
-        '<button type="button" id="js-copy-email">Copy</button></div></div>';
+        '<ul class="contact-email-list">' + mails.map(function (e) {
+          return '<li><a href="mailto:' + esc(e) + '">' + esc(e) + "</a>" +
+            '<button type="button" data-copy="' + esc(e) + '">Copy</button></li>';
+        }).join("") + "</ul></div>";
     }
     if (S.phone) {
-      panels += '<div class="contact-panel contact-panel--dark"><span class="contact-panel-number">' + (S.email ? "02" : "01") + "</span>" +
+      panels += '<div class="contact-panel contact-panel--dark"><span class="contact-panel-number">' + (mails.length ? "02" : "01") + "</span>" +
         '<p class="contact-panel-label">Phone</p><h2>Call the office</h2>' +
         '<p class="contact-panel-desc">Reach the research office by phone.</p>' +
         '<a class="contact-phone" href="tel:' + esc(String(S.phone).replace(/[^\d+]/g, "")) + '">' + esc(S.phone) + "</a></div>";
     }
     $("js-contact-methods").innerHTML = panels;
-    var copy = $("js-copy-email");
-    if (copy && navigator.clipboard) {
+    $("js-contact-methods").querySelectorAll("[data-copy]").forEach(function (copy) {
+      if (!navigator.clipboard) { copy.hidden = true; return; }
       copy.addEventListener("click", function () {
-        navigator.clipboard.writeText(S.email).then(function () {
+        navigator.clipboard.writeText(copy.getAttribute("data-copy")).then(function () {
           copy.textContent = "Copied"; copy.classList.add("is-copied");
           setTimeout(function () { copy.textContent = "Copy"; copy.classList.remove("is-copied"); }, 1800);
         });
       });
-    } else if (copy) { copy.hidden = true; }
+    });
     if ($("js-map-google") && safeUrl(S.map_url)) $("js-map-google").href = S.map_url;
   }
 
